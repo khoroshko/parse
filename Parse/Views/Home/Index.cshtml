@@ -1,0 +1,56 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+<div class="jumbotron">
+    <h1></h1>
+    <p class="lead"></p>
+    <p><a href="http://asp.net" class="btn btn-primary btn-lg parse-btn">Try parse</a></p>
+</div>
+
+<div id="tryParseModal" class="modal fade" role="dialog" data-keyboard="true" tabindex="-1">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close closed" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Try parse</h4>
+            </div>
+            <div class="tryParseBody"></div>
+        </div>
+    </div>
+</div>
+
+@section Scripts
+{
+    @Scripts.Render("~/bundles/jqueryval")
+
+    <!--fancybox-->
+    <script src="~/Scripts/plugins/fancyBox-master/source/jquery.fancybox.js"></script>
+    <link href="~/Scripts/plugins/fancyBox-master/source/jquery.fancybox.css" rel="stylesheet" />
+
+    <script type="text/javascript">
+        $('.parse-btn').on('click', function (event) {
+            event.preventDefault();
+
+            var elem = "#tryParseModal";
+
+            $.get("/Site/GetSite", function (response) {
+                $(elem).find('.tryParseBody').html(response);
+                var $form = $('#tryParse');
+
+                $(elem).modal({
+                    keyboard: true,
+                    backdrop: 'static'
+                });
+                //$(elem).on('shown.bs.modal', function () {
+                //    $('.icheck input[type="checkbox"],.icheck input[type="radio"]').iCheck({
+                //        checkboxClass: 'icheckbox_minimal-orange',
+                //        radioClass: 'iradio_minimal-orange'
+                //    });
+                //    ReInitValidationForm($form);
+                //})
+            });
+        });
+    </script>
+}

@@ -1,0 +1,24 @@
+﻿@model IEnumerable<Parse.Models.Product>
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div>
+    <h3>Единый закупочный словарь ДК 021:2015 ЛІГА:ЗАКОН</h3>
+    <table>
+        <tr class="header">
+            <td>Код</td>
+            <td>Название</td>
+            <td>Title</td>
+            <td></td>
+        </tr>
+        @foreach (Parse.Models.Product p in Model)
+        {
+            <tr>
+                <td><p>@p.Code</p></td>
+                <td><p>@p.Title</p></td>
+                <td><p>@p.TitleEngl</p></td>
+            </tr>
+        }
+    </table>
+</div>
+
