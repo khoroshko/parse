@@ -9,8 +9,6 @@ namespace Parse
 {
     public class ParseContext : DbContext
     {
-        public DbSet<Site> Sites { get; set; }
-
-        public DbSet<Product> Products { get; set; }
+        public DbSet<CpvProduct> CpvProducts { get; set; }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using HtmlAgilityPack;
+using Parse.Manage;
 using Parse.Models;
 using System;
 using System.Collections.Generic;
@@ -28,54 +29,26 @@ namespace Parse.Controllers
             {
                 string siteName = model.Name;
                 string siteForParse = GetProduct(siteName);
-                result= siteForParse;
+                result = siteForParse;
             }
             return result;
         }
 
         public string GetProduct(string name)
         {
+            CpvProduct product = new CpvProduct();
             string result = null;
-            List<Site> sites = db.Sites.ToList();
-            if (sites != null)
+            if (product.ParseSite == name)
             {
-                var entityList = sites.Where(x => x.Name == name);
-                if (entityList != null)
-                {
-                    Parse();
-                    result = "ok";
-                }
-                else
-                {
-                    result = "Now there is no way to parse this site";
-                }
+                CpvProductManage manage = new CpvProductManage();
+                manage.Parse(product.NameSite);
+                result = "Operation was successfully completed";
+            }
+            else
+            {
+                result = "You can only distribute the site ligazakon.ua";
             }
             return result;
-        }
-
-        public void Parse()
-        {
-            HtmlAgilityPack.HtmlDocument doc = new HtmlAgilityPack.HtmlDocument();
-            HtmlWeb hw = new HtmlWeb();
-            doc = hw.Load(ProjectConst.NameSite);
-            HtmlNodeCollection nodes = doc.DocumentNode.SelectNodes(".//*[@id='txtE3']/div/table/tr");
-            string result = "";
-            List<Product> entity = new List<Product>();
-            foreach (var item in nodes)
-            {
-                Product c = new Product();
-                c.Code = item.SelectSingleNode("td[1]").InnerText;
-                c.Title = item.SelectSingleNode("td[2]").InnerText;
-                c.TitleEngl = item.SelectSingleNode("td[3]").InnerText;
-                result += item.InnerText + Environment.NewLine;
-                entity.Add(c);
-            }
-
-            foreach (var item in entity)
-            {
-                db.Entry(item).State = EntityState.Added;
-                db.SaveChanges();
-            }
         }
     }
 }

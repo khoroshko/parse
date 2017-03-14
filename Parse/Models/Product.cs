@@ -7,9 +7,9 @@ namespace Parse.Models
 {
     public class Product
     {
+        public string NameSite { get; set; }
+        public string ParseSite { get; set; }
         public int Id { get; set; }
-        public string Code { get; set; }
         public string Title { get; set; }
-        public string TitleEngl { get; set; }
     }
 }

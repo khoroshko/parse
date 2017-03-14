@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Parse.Models.Product>
+﻿@model IEnumerable<Parse.Models.CpvProduct>
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
@@ -11,7 +11,7 @@
             <td>Title</td>
             <td></td>
         </tr>
-        @foreach (Parse.Models.Product p in Model)
+        @foreach (Parse.Models.CpvProduct p in Model)
         {
             <tr>
                 <td><p>@p.Code</p></td>

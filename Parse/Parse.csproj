@@ -216,11 +216,14 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Interface\IParser.cs" />
+    <Compile Include="Manage\CpvProductManage.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\BaseSearchFilterViewModel.cs" />
+    <Compile Include="Models\Product.cs" />
     <Compile Include="Models\ProductListViewModel.cs" />
     <Compile Include="Models\Site.cs" />
-    <Compile Include="Models\Product.cs" />
+    <Compile Include="Models\CpvProduct.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="ParseContext.cs" />
@@ -302,9 +305,7 @@
     <Content Include="Views\Site\_Site.cshtml" />
     <Content Include="Views\Product\List.cshtml" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Manage\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />

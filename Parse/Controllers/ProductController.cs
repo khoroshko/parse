@@ -15,7 +15,7 @@ namespace Parse.Controllers
 
         public ActionResult List()
         {
-            return View(db.Products);
+            return View(db.CpvProducts);
         }
 
         [HttpGet]
@@ -25,7 +25,7 @@ namespace Parse.Controllers
             {
                 return HttpNotFound();
             }
-            Product product = db.Products.Find(id);
+            CpvProduct product = db.CpvProducts.Find(id);
             if (product != null)
             {
                 return View(product);
@@ -34,7 +34,7 @@ namespace Parse.Controllers
         }
 
         [HttpPost]
-        public ActionResult EditProduct(Product product)
+        public ActionResult EditProduct(CpvProduct product)
         {
             db.Entry(product).State = EntityState.Modified;
             db.SaveChanges();
@@ -48,9 +48,9 @@ namespace Parse.Controllers
         }
 
         [HttpPost]
-        public ActionResult Create(Product product)
+        public ActionResult Create(CpvProduct product)
         {
-            db.Products.Add(product);
+            db.CpvProducts.Add(product);
             db.SaveChanges();
 
             return RedirectToAction("Index");
@@ -59,7 +59,7 @@ namespace Parse.Controllers
         [HttpGet]
         public ActionResult Delete(int id)
         {
-            Product product = db.Products.Find(id);
+            CpvProduct product = db.CpvProducts.Find(id);
             if (product == null)
             {
                 return HttpNotFound();
@@ -69,12 +69,12 @@ namespace Parse.Controllers
         [HttpPost, ActionName("Delete")]
         public ActionResult DeleteConfirmed(int id)
         {
-            Product product = db.Products.Find(id);
+            CpvProduct product = db.CpvProducts.Find(id);
             if (product == null)
             {
                 return HttpNotFound();
             }
-            db.Products.Remove(product);
+            db.CpvProducts.Remove(product);
             db.SaveChanges();
             return RedirectToAction("Index");
         }
